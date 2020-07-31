@@ -1,0 +1,41 @@
+var gulp = require('gulp')
+// var $ = require('gulp-load-plugins'){}
+var jade = require('gulp-jade')
+var sass = require('gulp-sass')
+var postcss = require('gulp-postcss')
+var autoprefixer = require('autoprefixer');
+
+gulp.task('copyHTML', function(){
+    return gulp.src('./source/**/*.html')
+    .pipe(gulp.dest('./public/'))
+})
+
+gulp.task('jade', function() {
+    // var YOUR_LOCALS = {};
+   
+    gulp.src('./source/**/*.jade')
+      .pipe(jade({
+        // locals: YOUR_LOCALS
+        pretty:true
+      }))
+      .pipe(gulp.dest('./public/'))
+  })
+
+gulp.task('sass', function() {
+    // var plugins = [
+    //   autoprefixer({browsers: ['last 1 version', '> 5%', 'ie 8']}) //針對瀏覽器修正
+    // ] 
+    //new vision moves to package.json
+    return gulp.src('./source/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    //編譯完成 CSS
+    .pipe(postcss([autoprefixer()]))
+    .pipe(gulp.dest('./public/css'))
+})
+
+gulp.task('watch', function () {
+    gulp.watch('./source/sass/**/*.scss', ['sass'])
+    gulp.watch('./source/**/*.jade',['jade'])
+})
+
+gulp.task('default', ['jade', 'sass', 'watch'])
