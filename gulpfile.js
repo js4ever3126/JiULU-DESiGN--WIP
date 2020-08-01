@@ -21,7 +21,8 @@ gulp.task('fileinclude', function() {
           prefix: '@@',
           basepath: '@file'
       }))
-      .pipe(gulp.dest('./public/'));
+      .pipe(gulp.dest('./public/'))
+      .pipe(browserSync.stream())
 })
 
 gulp.task('jade', function() {
@@ -75,6 +76,7 @@ gulp.task('browser-sync', function() {
 })
 
 gulp.task('watch', function () {
+    gulp.watch('./source/*.html', ['fileinclude'])
     gulp.watch('./source/sass/**/*.scss', ['sass'])
     gulp.watch('./source/**/*.jade',['jade'])
     gulp.watch('./source/js/**/*.js', ['babel'])

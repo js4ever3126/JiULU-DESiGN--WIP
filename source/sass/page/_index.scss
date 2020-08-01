@@ -1,0 +1,21 @@
+@import './base/variable';
+@import './mixin/mixin';
+
+.index_banner {
+    border: $bdr4;
+    width: 100%;
+    min-width: 1200px;
+    height: 700px;
+    @include displayFlex;
+
+    
+
+        h1 {
+            font-size: $fontSize-banner1;
+            padding: 30px;
+        }
+
+        h2 {
+            font-size: $fontSize-banner2;
+        }
+}

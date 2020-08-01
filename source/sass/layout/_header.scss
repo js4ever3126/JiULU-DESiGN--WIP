@@ -1,0 +1,38 @@
+@import './base/variable';
+
+nav {
+    display: flex;
+    flex-direction: row;
+    border: $bdr1;
+
+    div{
+        // border: $bdr4;
+        width: 50%;
+    }
+
+    ul {
+        // border: $bdr2;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        
+        li {
+            // border: $bdr3;
+            display: block;
+            list-style: none;
+            margin-left: 10px;
+        }  
+
+        a {
+            color: $color-font;
+            display: block;
+            font-size: $fontSize-xs;
+            padding: 1rem;
+            text-decoration: none;
+
+                &:hover {
+                    color: $color-secondary;
+                }
+        }
+    } 
+}
